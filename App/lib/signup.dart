@@ -1,3 +1,4 @@
+import 'package:app/db.dart';
 import 'package:flutter/material.dart';
 
 class SignUp extends StatefulWidget {
@@ -42,21 +43,30 @@ class _SignUpState extends State<SignUp> {
 
   Widget _form(){
      return Column(
-       mainAxisAlignment: MainAxisAlignment.center,
-       mainAxisSize: MainAxisSize.max,
+       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+       mainAxisSize: MainAxisSize.min,
        children: [
-           TextField(
-             controller: email,
-             decoration:const InputDecoration(
-               hintText: 'enter email'
-             ),
-           ),
-         TextField(
-           controller: password,
+         Padding(padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+         child: TextField(
+           controller: email,
            decoration:const InputDecoration(
-               hintText: 'enter password'
+               hintText: 'enter email'
            ),
-         ),
+         ),),
+         Padding(padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+           child:  TextField(
+             controller: password,
+             decoration:const InputDecoration(
+                 hintText: 'enter password'
+             ),
+           ),),
+        Padding(padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
+        child: TextButton(
+          onPressed: (){
+            Db().signup(email: email.text.toString(), password: password.text.toString());
+          },
+          child: const Text('SignUp'),),)
+
        ],
      );
   }

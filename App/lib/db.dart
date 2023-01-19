@@ -3,20 +3,19 @@ import 'package:fluttertoast/fluttertoast.dart';
 
 class Db{
   final dio = Dio();
-  final ip = '192.168.100.198';
   Db(){
-    dio.options.baseUrl = '$ip:3000/';
+    dio.options.baseUrl = 'http://192.168.100.198:3000/';
   }
 
   Future signup({required String email,required String password}) async{
     try{
-     var request =await dio.post('signup',data:{
+     var request = await dio.post('signup',data:{
         'email':email,
         'password':password
       });
     Fluttertoast.showToast(msg: request.data);
     }catch(ex){
-      Fluttertoast.showToast(msg: ex.toString());
+      print(ex);
     }
   }
 
