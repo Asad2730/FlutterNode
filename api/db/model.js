@@ -13,3 +13,15 @@ module.exports.signup = (req, res) => {
     });
 
 }
+
+
+module.exports.login = (req, res) => {
+
+    let obj = { email: req.params.email, password: req.params.password };
+    con.query('select * from user where email =? and password = ?', [obj.email, obj.password], (err, row, field) => {
+        if (err) return err;
+        res.json(row);
+        res.end();
+    });
+
+}

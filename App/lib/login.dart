@@ -1,18 +1,17 @@
 import 'package:app/customWidgets.dart';
 import 'package:app/db.dart';
+import 'package:app/navigation.dart';
 import 'package:flutter/material.dart';
 
-import 'navigation.dart';
 
-
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class Login extends StatefulWidget {
+  const Login({Key? key}) : super(key: key);
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Login> createState() => _LoginState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _LoginState extends State<Login> {
 
   var email = TextEditingController();
   var password = TextEditingController();
@@ -25,33 +24,12 @@ class _SignUpState extends State<SignUp> {
   }
 
   @override
-  void initState() {
-    super.initState();
-    email.addListener(() {
-      print('email : ${email.text}');
-    });
-    password.addListener(() {
-      print('password : ${password.text}');
-    });
-  }
-
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
       body: _form(),
     );
   }
-
-  void _submitForm() {
-     Db().signup(
-         email: email.text.toString(), password: password.text.toString());
-     email.clear();
-     password.clear();
-  }
-
-
 
   Widget _form() {
     return Column(
@@ -60,7 +38,7 @@ class _SignUpState extends State<SignUp> {
       children: [
         const SizedBox(height: 20,),
         const Text(
-          'SignUp',
+          'Login',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -70,10 +48,10 @@ class _SignUpState extends State<SignUp> {
         const SizedBox(height: 20,),
         myTextField(controllerTxt: email, hintTxt: 'enter email'),
         myTextField(controllerTxt: password, hintTxt: 'enter password'),
-       myButton(txt: 'Signup'),
+        myButton(txt: 'Login'),
         TextButton(
-          onPressed: ()=>Navigation.loginPage(),
-          child: const Text('Have an account? Login'),
+            onPressed: ()=>Navigation.signupPage(),
+            child: const Text('Don,t have an account? Signup'),
         ),
       ],
     );
@@ -101,7 +79,10 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+
+  void _submitForm() {
+    Db().login(email: email.text.toString(), password: password.text.toString());
+     email.clear();
+     password.clear();
+  }
 }
-
-
-

@@ -4,7 +4,7 @@ const db = require('./db/model');
 const app = express()
 app.use(express.json())
 
-app.listen(3000, () => console.log('Express Server is running at port 3000'));
+app.listen(3000, "0.0.0.0", () => console.log('Express Server is running at port 3000'));
 
-
+app.get('/login/:email/:password', db.login)
 app.post('/signup', db.signup);

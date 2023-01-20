@@ -1,4 +1,4 @@
-import 'package:app/signup.dart';
+import 'package:app/login.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -12,8 +12,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return  MaterialApp(
-      home: const SignUp(),
-      key: Get.key,
+      home: const Login(),
+      navigatorKey: Get.key,
     );
   }
 }
