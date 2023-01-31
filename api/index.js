@@ -9,4 +9,7 @@ app.listen(3000, "0.0.0.0", () => console.log('Express Server is running at port
 app.get('/login/:email/:password', db.login)
 app.post('/signup', db.signup);
 
+app.get('/getData/:uid', db.getData);
 app.post('/postData', db.postData);
+
+app.delete('/deletePost/:id', db.deleteData);

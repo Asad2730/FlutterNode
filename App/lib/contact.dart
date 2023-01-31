@@ -29,6 +29,7 @@ class _ContactState extends State<Contact> {
     return Scaffold(
       appBar: AppBar(),
       body: _form(),
+      drawer: myDrawer(context: context),
     );
   }
 
@@ -48,11 +49,11 @@ class _ContactState extends State<Contact> {
             fontSize: 30,
           ),
         ),
-        const SizedBox(height: 20,),
+        const SizedBox(height: 10,),
         myTextField(controllerTxt: name, hintTxt: 'enter name', type: TextInputType.text),
-        const SizedBox(height: 20,),
+        const SizedBox(height: 10,),
         myTextField(controllerTxt: no, hintTxt: 'enter phone no', type: TextInputType.number),
-        const SizedBox(height: 20,),
+        const SizedBox(height: 10,),
         myButton(txt: 'Add Contact'),
 
       ],
