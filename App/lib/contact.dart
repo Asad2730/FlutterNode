@@ -2,38 +2,26 @@ import 'package:app/customWidgets.dart';
 import 'package:app/db.dart';
 import 'package:flutter/material.dart';
 
-import 'navigation.dart';
 
-
-class SignUp extends StatefulWidget {
-  const SignUp({Key? key}) : super(key: key);
+class Contact extends StatefulWidget {
+  const Contact({Key? key}) : super(key: key);
 
   @override
-  State<SignUp> createState() => _SignUpState();
+  State<Contact> createState() => _ContactState();
 }
 
-class _SignUpState extends State<SignUp> {
+class _ContactState extends State<Contact> {
 
-  var email = TextEditingController();
-  var password = TextEditingController();
+  var name = TextEditingController();
+  var no = TextEditingController();
 
   @override
   void dispose() {
-    email.dispose();
-    password.dispose();
+    name.dispose();
+    no.dispose();
     super.dispose();
   }
 
-  @override
-  void initState() {
-    super.initState();
-    email.addListener(() {
-      print('email : ${email.text}');
-    });
-    password.addListener(() {
-      print('password : ${password.text}');
-    });
-  }
 
 
   @override
@@ -44,23 +32,16 @@ class _SignUpState extends State<SignUp> {
     );
   }
 
-  void _submitForm() {
-     Db().signup(
-         email: email.text.toString(), password: password.text.toString());
-     email.clear();
-     password.clear();
-  }
 
+  Widget _form(){
 
-
-  Widget _form() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       mainAxisSize: MainAxisSize.min,
       children: [
         const SizedBox(height: 20,),
         const Text(
-          'SignUp',
+          'Add Contact',
           textAlign: TextAlign.center,
           style: TextStyle(
             fontWeight: FontWeight.bold,
@@ -68,17 +49,16 @@ class _SignUpState extends State<SignUp> {
           ),
         ),
         const SizedBox(height: 20,),
-        myTextField(controllerTxt: email, hintTxt: 'enter email',type: TextInputType.emailAddress),
-        myTextField(controllerTxt: password, hintTxt: 'enter password',type: TextInputType.text),
-       myButton(txt: 'Signup'),
-        TextButton(
-          onPressed: ()=>Navigation.loginPage(),
-          child: const Text('Have an account? Login'),
-        ),
+        myTextField(controllerTxt: name, hintTxt: 'enter name', type: TextInputType.text),
+        const SizedBox(height: 20,),
+        myTextField(controllerTxt: no, hintTxt: 'enter phone no', type: TextInputType.number),
+        const SizedBox(height: 20,),
+        myButton(txt: 'Add Contact'),
+
       ],
     );
-  }
 
+  }
 
   Widget myButton( {required String txt}) {
     return Padding(
@@ -101,7 +81,12 @@ class _SignUpState extends State<SignUp> {
       ),
     );
   }
+
+  void _submitForm() {
+
+    Db().postContact(name: name.text.toString(), no: no.text.toString());
+    name.clear();
+    no.clear();
+  }
+
 }
-
-
-

@@ -46,8 +46,8 @@ class _LoginState extends State<Login> {
           ),
         ),
         const SizedBox(height: 20,),
-        myTextField(controllerTxt: email, hintTxt: 'enter email'),
-        myTextField(controllerTxt: password, hintTxt: 'enter password'),
+        myTextField(controllerTxt: email, hintTxt: 'enter email',type: TextInputType.text),
+        myTextField(controllerTxt: password, hintTxt: 'enter password',type: TextInputType.text),
         myButton(txt: 'Login'),
         TextButton(
             onPressed: ()=>Navigation.signupPage(),

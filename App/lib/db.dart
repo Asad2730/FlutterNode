@@ -4,7 +4,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 class Db{
   final dio = Dio();
   Db(){
-    dio.options.baseUrl = 'http://192.168.10.10:3000/';
+    dio.options.baseUrl = 'http://192.168.100.198:3000/';
   }
 
   Future signup({required String email,required String password}) async{
@@ -24,7 +24,7 @@ class Db{
   }
 
 
-  Future login({required String email,required String password}) async{
+  Future login({required String email,required String password}) async {
     try{
       if(email.isEmpty && password.isEmpty){
         return;
@@ -39,5 +39,25 @@ class Db{
       print(ex);
     }
   }
+
+Future postContact({required String name,required String no}) async {
+    
+  try{
+    if(name.isEmpty && no.isEmpty) {
+      return;
+    } else{
+      var request = await dio.post('postData/',data: {
+        'name':name,
+        'no':no,
+        'uid':1,
+      });
+      print(request.data);
+    }
+  }catch(ex){
+    print(ex.toString());
+  }
+    
+}
+
 
 }

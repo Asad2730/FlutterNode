@@ -1,7 +1,6 @@
 const con = require('./conn');
 
 
-
 module.exports.signup = (req, res) => {
 
     let obj = { email: req.body.email, password: req.body.password };
@@ -24,4 +23,14 @@ module.exports.login = (req, res) => {
         res.end();
     });
 
+}
+
+module.exports.postData = (req, res) => {
+
+    let obj = { uid: req.body.uid, name: req.body.name, no: req.body.no };
+    con.query('insert into data set ?', obj, (err, row, field) => {
+        if (err) return err;
+        res.json('Data inserted!');
+        res.end();
+    });
 }
